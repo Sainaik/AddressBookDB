@@ -2,6 +2,7 @@
 create database AdressBookDB;
 
 --  UC2: creare a AddressBook Table 
+
 create table AddressBook
 (
 firstName varchar(25) not null,
@@ -15,7 +16,6 @@ email varchar(40) not null
 );
 
 sp_help AddressBook;
-
 
 --  UC3: Insert contacts into AddressBook Table
 insert into AddressBook
@@ -82,6 +82,7 @@ Name varchar(255),
 Type varchar(255);
 
 
+
 -- UC9: identify and Update the type and name of in the addressbook 
 update AddressBook set Name='Sai Contatcs' ;
 
@@ -110,3 +111,25 @@ values('Jahnavi', 'Janu', 'Vizag', 'Vizag', 'AP', 535572 , '9265231901', 'jnv@gm
 
 insert into AddressBook
 values('Jahnavi', 'Janu', 'Vizag', 'Vizag', 'AP', 535572 , '9265231901', 'jnv@gmail.com','Sai contact', 'friend');
+
+
+
+create table ContactType (FirstName varchar(20) ,Type varchar(20) primary key(FirstName,Type));
+
+insert into ContactType  values('Sai','Family');
+insert into ContactType  values('Srikanth','Friends');
+insert into ContactType  values('Kishan','Friends');
+insert into ContactType  values('Samarth','Friends');
+insert into ContactType  values('Arundhati','Office');
+insert into ContactType  values('Jahnavi','Family');
+insert into ContactType values('Jahnavi','Friend');
+
+select * from ContactType ;
+
+delete from AddressBook where FirstName='Jahnvai' and Type='Family';
+
+alter table AddressBook drop column Type;
+
+--UC13 Ensure all retrive queries are working fine
+select AB.FirstName,AB.LastName ,CT.Type
+from AddressBook AB inner join ContactType CT on AB.FirstName=CT.FirstName ; 
